@@ -1,0 +1,96 @@
+import 'package:booktrip/constant.dart';
+import 'package:booktrip/models/model_timeline.dart';
+import 'package:booktrip/repository/repository.dart';
+import 'package:flutter/material.dart';
+
+class timeline_builder extends StatefulWidget {
+  timeline_builder({
+    Key? key,
+    required this.size,
+  }) : super(key: key);
+
+  final Size size;
+
+  @override
+  State<timeline_builder> createState() => _timeline_builderState();
+}
+
+class _timeline_builderState extends State<timeline_builder> {
+  Repository repository = Repository();
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder<List<Timeline>>(
+        stream: repository.getDataTimeline(),
+        builder: (context, snapshot) {
+          if (snapshot.hasError) {
+            return Text("ERROR");
+          } else if (snapshot.hasData) {
+            final timeline = snapshot.data;
+            return Expanded(
+              child: ListView.builder(
+                  itemCount: timeline!.length,
+                  shrinkWrap: true,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: const EdgeInsets.fromLTRB(
+                          kDefaultPadding,
+                          kDefaultPadding / 2,
+                          kDefaultPadding,
+                          kDefaultPadding / 2),
+                      child: Column(
+                        children: [
+                          GestureDetector(
+                            onTap: () {},
+                            child: Container(
+                              height: 116,
+                              width: widget.size.width,
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.only(
+                                      topRight: Radius.circular(8),
+                                      topLeft: Radius.circular(8)),
+                                  image: DecorationImage(
+                                      image: AssetImage(
+                                          timeline[index].itemAdress),
+                                      fit: BoxFit.cover)),
+                            ),
+                          ),
+                          Container(
+                            width: widget.size.width,
+                            height: 32,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.only(
+                                    bottomLeft: Radius.circular(8),
+                                    bottomRight: Radius.circular(8)),
+                                color: Colors.white,
+                                boxShadow: [
+                                  BoxShadow(
+                                      offset: Offset(0, 5),
+                                      blurRadius: 10,
+                                      color: Theme.of(context)
+                                          .primaryColor
+                                          .withOpacity(0.25)),
+                                ]),
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.all(kDefaultPadding / 4),
+                              child: Text(
+                                timeline[index].itemTitle,
+                                style:
+                                    TextStyle(color: kTextColor, fontSize: 18),
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    );
+                  }),
+            );
+          } else {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+        });
+  }
+}

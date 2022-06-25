@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "649280660580",
+    "project_id": "booktrip-e8c82",
+    "storage_bucket": "booktrip-e8c82.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:649280660580:android:c819ef6dae924fecadeb71",
+        "android_client_info": {
+          "package_name": "com.example.booktrip"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "649280660580-2113i79p14e35rufr5qsgolrp2bn4tne.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAp2qZzOwVLles6rCVSMhelPBfuecBb4yc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "649280660580-2113i79p14e35rufr5qsgolrp2bn4tne.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
