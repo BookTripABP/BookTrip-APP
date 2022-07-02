@@ -25,7 +25,7 @@ class Destinasi {
     };
   }
 
-  factory Destinasi.fromJson(Map<String, dynamic> json) {
+  factory Destinasi.fromJson(json) {
     return Destinasi(
       itemAdress: json['address'],
       itemId: json['id'],

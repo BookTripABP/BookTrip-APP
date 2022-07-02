@@ -1,3 +1,5 @@
+import 'package:booktrip/screen/destination/destination.dart';
+import 'package:booktrip/screen/home_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../constant.dart';
@@ -15,7 +17,9 @@ class titleWithMore extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
       child: Row(
         children: [
-          TitleRecommend(title: title,),
+          TitleRecommend(
+            title: title,
+          ),
           Spacer(),
           ElevatedButton(
               style: ElevatedButton.styleFrom(
@@ -41,7 +45,8 @@ class titleWithMore extends StatelessWidget {
 
 class TitleRecommend extends StatelessWidget {
   const TitleRecommend({
-    Key? key, required this.title,
+    Key? key,
+    required this.title,
   }) : super(key: key);
 
   final String title;

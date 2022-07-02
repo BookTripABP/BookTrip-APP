@@ -16,7 +16,7 @@ class destination extends StatelessWidget {
       body: Column(
         children: [
           HeaderWithSearchBar(size: size),
-          SizedBox(height: 4),
+          // SizedBox(height: 1),
           destinationCard(),
         ],
       ),

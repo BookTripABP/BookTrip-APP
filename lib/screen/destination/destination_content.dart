@@ -1,6 +1,7 @@
 import 'package:booktrip/constant.dart';
 import 'package:booktrip/models/model_destinasi.dart';
 import 'package:booktrip/repository/repository.dart';
+import 'package:booktrip/screen/destination/detail/destination_detail.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -21,6 +22,7 @@ class _destinationCardState extends State<destinationCard> {
         stream: repository.getDataDestinasi(),
         builder: (context, snapshot) {
           if (snapshot.hasError) {
+            final destinasi = snapshot.data;
             return Text("ERROR");
           } else if (snapshot.hasData) {
             final destinasi = snapshot.data;
@@ -38,13 +40,21 @@ class _destinationCardState extends State<destinationCard> {
                     itemCount: destinasi!.length,
                     itemBuilder: (context, index) {
                       return GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.pushNamed(
+                              context, destinationDetail.routeAdr,
+                              arguments: destinationDetail(
+                                  address: destinasi[index].itemAdress,
+                                  title: destinasi[index].itemTitle,
+                                  destination: destinasi[index].itemDestination,
+                                  detail: destinasi[index].itemDetail,
+                                  harga: destinasi[index].itemHarga));
+                        },
                         child: Container(
-                          height: 100,
-                          width: 100,
+                          height: MediaQuery.of(context).size.height / 5.1,
+                          width: MediaQuery.of(context).size.width,
                           decoration: BoxDecoration(
                               color: Colors.white,
-                              borderRadius: BorderRadius.circular(10.0),
                               boxShadow: [
                                 BoxShadow(
                                   color: Colors.grey.withOpacity(0.5),
@@ -57,16 +67,18 @@ class _destinationCardState extends State<destinationCard> {
                               image: DecorationImage(
                                   image:
                                       AssetImage(destinasi[index].itemAdress),
-                                  fit: BoxFit.cover)),
+                                  fit: BoxFit.fill)),
                           child: Padding(
                             padding: const EdgeInsets.only(
-                                bottom: 0, top: 182, left: 8),
+                                bottom: 0, top: 12, left: 12),
                             child: Text(
                               destinasi[index].itemTitle,
                               style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 18),
+                                color: Colors.white,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 18,
+                                backgroundColor: Colors.black.withOpacity(0.4),
+                              ),
                             ),
                           ),
                         ),

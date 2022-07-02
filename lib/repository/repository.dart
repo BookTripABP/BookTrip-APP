@@ -19,8 +19,8 @@ class Repository {
       .map((event) =>
           event.docs.map((e) => Timeline.fromJson(e.data())).toList());
 
-  Stream<List<User>> getDataUser() => FirebaseFirestore.instance
+  Stream<List<Users>> getDataUser() => FirebaseFirestore.instance
       .collection("user")
       .snapshots()
-      .map((event) => event.docs.map((e) => User.fromJson(e.data())).toList());
+      .map((event) => event.docs.map((e) => Users.fromJson(e.data())).toList());
 }

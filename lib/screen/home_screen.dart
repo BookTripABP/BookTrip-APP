@@ -1,7 +1,9 @@
 import 'package:booktrip/constant.dart';
 import 'package:booktrip/screen/destination/destination.dart';
 import 'package:booktrip/screen/home/body.dart';
+import 'package:booktrip/screen/landing/login.dart';
 import 'package:booktrip/screen/timeline/timeline.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'orderhistory/orderhistory.dart';
@@ -34,12 +36,21 @@ class _HomeScreenState extends State<HomeScreen> {
             fontWeight: FontWeight.bold,
           ),
         ),
+        automaticallyImplyLeading: false,
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              FirebaseAuth.instance.signOut().then((value) {
+                Navigator.pushAndRemoveUntil(
+                    (context),
+                    MaterialPageRoute(builder: (context) => Login()),
+                    (route) => false);
+              });
+            },
             icon: Icon(
-              Icons.menu,
+              Icons.logout_rounded,
               color: Colors.white,
+              size: 28,
             ),
             iconSize: 40,
           )

@@ -1,6 +1,7 @@
 import 'package:booktrip/constant.dart';
 import 'package:booktrip/models/model_timeline.dart';
 import 'package:booktrip/repository/repository.dart';
+import 'package:booktrip/screen/timeline/detail/timeline_detail.dart';
 import 'package:flutter/material.dart';
 
 class timeline_builder extends StatefulWidget {
@@ -40,37 +41,38 @@ class _timeline_builderState extends State<timeline_builder> {
                       child: Column(
                         children: [
                           GestureDetector(
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.pushNamed(
+                                  context, timelineDetail.routeAdr,
+                                  arguments: timelineDetail(
+                                    address: timeline[index].itemAdress,
+                                    title: timeline[index].itemTitle,
+                                    detail: timeline[index].itemDetail,
+                                  ));
+                            },
                             child: Container(
-                              height: 116,
+                              height: widget.size.height / 4,
                               width: widget.size.width,
                               decoration: BoxDecoration(
                                   color: Colors.white,
-                                  borderRadius: BorderRadius.only(
-                                      topRight: Radius.circular(8),
-                                      topLeft: Radius.circular(8)),
                                   image: DecorationImage(
                                       image: AssetImage(
                                           timeline[index].itemAdress),
-                                      fit: BoxFit.cover)),
+                                      fit: BoxFit.fill)),
                             ),
                           ),
                           Container(
                             width: widget.size.width,
                             height: 32,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.only(
-                                    bottomLeft: Radius.circular(8),
-                                    bottomRight: Radius.circular(8)),
-                                color: Colors.white,
-                                boxShadow: [
-                                  BoxShadow(
-                                      offset: Offset(0, 5),
-                                      blurRadius: 10,
-                                      color: Theme.of(context)
-                                          .primaryColor
-                                          .withOpacity(0.25)),
-                                ]),
+                            decoration:
+                                BoxDecoration(color: Colors.white, boxShadow: [
+                              BoxShadow(
+                                  offset: Offset(0, 5),
+                                  blurRadius: 10,
+                                  color: Theme.of(context)
+                                      .primaryColor
+                                      .withOpacity(0.25)),
+                            ]),
                             child: Padding(
                               padding:
                                   const EdgeInsets.all(kDefaultPadding / 4),

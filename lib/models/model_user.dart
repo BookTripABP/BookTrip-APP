@@ -1,16 +1,20 @@
-class User {
-  final String itemId;
-  final String itemNama;
-  final String itemEmail;
-  final String itemUsername;
-  final String itemPassword;
+import 'package:booktrip/models/model_order.dart';
 
-  User({
-    required this.itemId,
-    required this.itemNama,
-    required this.itemEmail,
-    required this.itemUsername,
-    required this.itemPassword,
+class Users {
+  String? itemId;
+  String? itemNama;
+  String? itemEmail;
+  String? itemUsername;
+  String? itemPassword;
+  List? order;
+
+  Users({
+    this.itemId,
+    this.itemNama,
+    this.itemEmail,
+    this.itemUsername,
+    this.itemPassword,
+    this.order,
   });
 
   Map<String, dynamic> toJson() {
@@ -20,16 +24,18 @@ class User {
       "email": itemEmail,
       "username": itemUsername,
       "password": itemPassword,
+      "order": order,
     };
   }
 
-  factory User.fromJson(Map<String, dynamic> json) {
-    return User(
+  factory Users.fromJson(Map<String, dynamic> json) {
+    return Users(
       itemNama: json['nama'],
       itemId: json['id'],
       itemEmail: json['email'],
       itemUsername: json['username'],
       itemPassword: json['password'],
+      order: json['order'],
     );
   }
 }

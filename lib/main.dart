@@ -1,4 +1,5 @@
 import 'package:booktrip/constant.dart';
+import 'package:booktrip/routes/routes_generator.dart';
 import 'package:booktrip/screen/home_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +22,8 @@ class MyApp extends StatelessWidget {
           primaryColor: Colors.blue,
           textTheme: Theme.of(context).textTheme.apply(bodyColor: kTextColor),
           visualDensity: VisualDensity.adaptivePlatformDensity),
-      home: HomeScreen(),
+      initialRoute: '/login',
+      onGenerateRoute: RouteGenerator.generateRoute,
     );
   }
 }

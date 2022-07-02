@@ -15,21 +15,26 @@ class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          HeaderWithSearchBar(size: size),
-          titleWithMore(
-            title: 'Recommend',
-          ),
-          recommendTopDestination(),
-          titleWithMore(
-            title: 'Timeline',
-          ),
-          featuredTimeline(),
-          titlewithoutmore(title: "Feedbacks"),
-          review_user()
-        ],
+    return WillPopScope(
+      onWillPop: () async {
+        return false;
+      },
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            HeaderWithSearchBar(size: size),
+            titleWithMore(
+              title: 'Recommend',
+            ),
+            recommendTopDestination(),
+            titleWithMore(
+              title: 'Timeline',
+            ),
+            featuredTimeline(),
+            titlewithoutmore(title: "Feedbacks"),
+            review_user()
+          ],
+        ),
       ),
     );
   }
