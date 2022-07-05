@@ -56,7 +56,7 @@ class _NewRegisterState extends State<NewRegister> {
                     padding: const EdgeInsets.only(
                         left: kDefaultPadding, right: kDefaultPadding),
                     child: Container(
-                      height: MediaQuery.of(context).size.height / 1.45,
+                      height: MediaQuery.of(context).size.height / 1.3,
                       decoration: BoxDecoration(
                           color: Colors.white,
                           boxShadow: [

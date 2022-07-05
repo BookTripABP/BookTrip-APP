@@ -32,7 +32,7 @@ class Body extends StatelessWidget {
             ),
             featuredTimeline(),
             titlewithoutmore(title: "Feedbacks"),
-            review_user()
+            review_user(),
           ],
         ),
       ),
